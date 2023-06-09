@@ -1,63 +1,68 @@
 #ifndef DATA_TYPE_HPP
 #define DATA_TYPE_HPP
 
-#include <stdexcept>
-
 namespace turkin
 {
-  namespace datatype
+  enum class PINF
   {
-    enum class PINF
-    {
-      LEFT_BRACKET = 40, RIGHT_BRACKET = 41, ADD = 43, SUB = 45, MUL = 42, DIV = 47, MOD = 37, NUM = 0
-    };
+    ADD, SUB, MUL, DIV, MOD, NUM, LEFT_BRACKET, RIGHT_BRACKET
+  };
 
-    enum class PFIX
-    {
-      ADD = 43, SUB = 45, MUL = 42, DIV = 47, MOD = 37, NUM = 0
-    };
+  enum class PFIX
+  {
+    ADD, SUB, MUL, DIV, MOD, NUM
+  };
 
-    template< typename T >
-    struct calc_t
-    {
+  template< typename T >
+  struct calc_t
+  {
+    public:
       calc_t(const calc_t< T > & rhs);
       calc_t(long long rhs, T nt);
-      calc_t(char rhs, T nt);
-      calc_t< T > & operator=(const calc_t< T > & rhs);
-      union
-      {
-        long long num;
-        char sign;
-      } calc;
-      T type;
-    };
+      T & getType();
+      const T & getType() const;
+      long long & getNum();
+      const long long & getNum() const;
+    private:
+      long long num_;
+      T type_;
   };
-};
+}
 
 template< typename T >
-turkin::datatype::calc_t< T >::calc_t(const calc_t< T > & rhs):
-  calc(rhs.calc),
-  type(rhs.type)
+turkin::calc_t< T >::calc_t(const calc_t< T > & rhs):
+  num_(rhs.num_),
+  type_(rhs.type_)
 {}
 
 template< typename T >
-turkin::datatype::calc_t< T >::calc_t(long long rhs, T nt):
-  calc({.num=rhs}),
-  type(nt)
+turkin::calc_t< T >::calc_t(long long rhs, T nt):
+  num_(rhs),
+  type_(nt)
 {}
 
 template< typename T >
-turkin::datatype::calc_t< T >::calc_t(char rhs, T nt):
-  calc({.sign=rhs}),
-  type(nt)
-{}
-
-template< typename T >
-turkin::datatype::calc_t< T > & turkin::datatype::calc_t< T >::operator=(const calc_t< T > & rhs)
+T & turkin::calc_t< T >::getType()
 {
-  calc = rhs.calc;
-  type = rhs.type;
-  return * this;
+  return type_;
+}
+
+template< typename T >
+const T & turkin::calc_t< T >::getType() const
+{
+  return type_;
+}
+
+template< typename T >
+long long & turkin::calc_t< T >::getNum()
+{
+  return num_;
+}
+
+template< typename T >
+const long long & turkin::calc_t< T >::getNum() const
+{
+  return num_;
 }
 
 #endif

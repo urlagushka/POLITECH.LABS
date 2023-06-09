@@ -2,7 +2,6 @@
 #define STACK_HPP
 
 #include <stdexcept>
-#include "s-q-help.hpp"
 #include "oneway-list.hpp"
 
 namespace turkin
@@ -20,11 +19,11 @@ namespace turkin
       void swap(Stack< T > & rhs) noexcept;
       void push(const T & rhs);
       T & get();
+      const T & get() const;
       void pop();
-      const T & drop() const;
       bool isEmpty() const;
     private:
-      pattern::OneWayNode< T > * value_;
+      OneWayNode< T > * value_;
   };
 }
 
@@ -35,7 +34,7 @@ turkin::Stack< T >::Stack():
 
 template< typename T >
 turkin::Stack< T >::Stack(const Stack< T > & rhs):
-  value_(copyList(rhs.value_))
+  value_(copyList(rhs.value_).first)
 {}
 
 template< typename T >
@@ -66,7 +65,7 @@ turkin::Stack< T > & turkin::Stack< T >::operator=(Stack< T > && rhs)
 template< typename T >
 turkin::Stack< T >::~Stack()
 {
-  turkin::sqhelp::free(value_);
+  free(value_);
 }
 
 template< typename T >
@@ -78,7 +77,7 @@ void turkin::Stack< T >::swap(Stack< T > & rhs) noexcept
 template< typename T >
 void turkin::Stack< T >::push(const T & rhs)
 {
-  value_ = new pattern::OneWayNode< T > {rhs, value_};
+  value_ = new OneWayNode< T > {rhs, value_};
 }
 
 template< typename T >
@@ -92,9 +91,19 @@ T & turkin::Stack< T >::get()
 }
 
 template< typename T >
+const T & turkin::Stack< T >::get() const
+{
+  if (isEmpty())
+  {
+    throw std::runtime_error("stack is empty");
+  }
+  return value_->data;
+}
+
+template< typename T >
 void turkin::Stack< T >::pop()
 {
-  pattern::OneWayNode< T > * element = value_;
+  OneWayNode< T > * element = value_;
   value_ = element->next;
   delete element;
 }

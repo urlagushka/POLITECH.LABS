@@ -10,6 +10,8 @@
 
 int main(int argc, char * argv[])
 {
+  using namespace turkin;
+
   std::ifstream file;
   if (argc == 2)
   {
@@ -20,8 +22,9 @@ int main(int argc, char * argv[])
       return 1;
     }
   }
+
   std::istream & in = (argc == 2) ? file : std::cin;
-  turkin::Stack< long long > answers;
+  Stack< long long > answers;
   std::string dirt;
   try
   {
@@ -37,8 +40,8 @@ int main(int argc, char * argv[])
         continue;
       }
       dirt += "\n";
-      turkin::Queue< turkin::datatype::calc_t< turkin::datatype::PINF > > input = str2Inf(dirt);
-      turkin::Queue< turkin::datatype::calc_t< turkin::datatype::PFIX > > output = inf2Post(input);
+      Queue< calc_t< PINF > > input = str2Inf(dirt);
+      Queue< calc_t< PFIX > > output = inf2Post(input);
       answers.push(post2Result(output));
     }
   }

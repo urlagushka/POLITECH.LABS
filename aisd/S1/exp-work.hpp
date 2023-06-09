@@ -5,11 +5,14 @@
 #include <queue.hpp>
 #include "data-type.hpp"
 
-using pinf_t = turkin::datatype::calc_t< turkin::datatype::PINF >;
-using pfix_t = turkin::datatype::calc_t< turkin::datatype::PFIX >;
+using pinf_t = turkin::calc_t< turkin::PINF >;
+using pfix_t = turkin::calc_t< turkin::PFIX >;
 
-turkin::Queue< pinf_t > str2Inf(std::string & dirt);
-turkin::Queue< pfix_t > inf2Post(turkin::Queue< pinf_t > & input);
-long long post2Result(turkin::Queue< pfix_t > & output);
+namespace turkin
+{
+  Queue< pinf_t > str2Inf(std::string & dirt);
+  Queue< pfix_t > inf2Post(Queue< pinf_t > & input);
+  long long post2Result(Queue< pfix_t > & output);
+}
 
 #endif

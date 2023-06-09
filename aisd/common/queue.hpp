@@ -3,7 +3,7 @@
 
 #include <cstring>
 #include <stdexcept>
-#include "s-q-help.hpp"
+#include <utility>
 #include "oneway-list.hpp"
 
 namespace turkin
@@ -21,11 +21,12 @@ namespace turkin
       void swap(Queue< T > & rhs) noexcept;
       void push(const T & rhs);
       T & get();
+      const T & get() const;
       void pop();
       bool isEmpty() const;
     private:
-      pattern::OneWayNode< T > * value_;
-      pattern::OneWayNode< T > * back_;
+      OneWayNode< T > * value_;
+      OneWayNode< T > * back_;
   };
 }
 
@@ -40,13 +41,9 @@ turkin::Queue< T >::Queue(const Queue< T > & rhs):
   value_(nullptr),
   back_(nullptr)
 {
-  value_ = turkin::pattern::copyList(rhs.value_);
-  pattern::OneWayNode< T > * element = value_;
-  while (element->next)
-  {
-    element = element->next;
-  }
-  back_ = element;
+  auto clone = copyList(rhs.value_);
+  value_ = clone.first;
+  back_ = clone.second;
 }
 
 template< typename T >
@@ -59,7 +56,7 @@ turkin::Queue< T >::Queue(Queue< T > && rhs):
 }
 
 template< typename T >
-turkin::Queue< T > & turkin::Queue< T >::operator=(const turkin::Queue< T > & rhs)
+turkin::Queue< T > & turkin::Queue< T >::operator=(const Queue< T > & rhs)
 {
   Queue< T > temp(rhs);
   swap(temp);
@@ -67,9 +64,9 @@ turkin::Queue< T > & turkin::Queue< T >::operator=(const turkin::Queue< T > & rh
 }
 
 template< typename T >
-turkin::Queue< T > & turkin::Queue< T >::operator=(turkin::Queue< T > && rhs)
+turkin::Queue< T > & turkin::Queue< T >::operator=(Queue< T > && rhs)
 {
-  turkin::sqhelp::free(value_);
+  free(value_);
   value_ = nullptr;
   back_ = nullptr;
   swap(rhs);
@@ -79,8 +76,7 @@ turkin::Queue< T > & turkin::Queue< T >::operator=(turkin::Queue< T > && rhs)
 template< typename T >
 turkin::Queue< T >::~Queue()
 {
-  turkin::sqhelp::free(value_);
-  back_ = nullptr;
+  free(value_);
 }
 
 template< typename T >
@@ -93,7 +89,7 @@ void turkin::Queue< T >::swap(Queue< T > & rhs) noexcept
 template< typename T >
 void turkin::Queue< T >::push(const T & rhs)
 {
-  pattern::OneWayNode< T > * element = new pattern::OneWayNode< T > {rhs, nullptr};
+  OneWayNode< T > * element = new OneWayNode< T > {rhs, nullptr};
   if (isEmpty())
   {
     value_ = element;
@@ -118,13 +114,23 @@ T & turkin::Queue< T >::get()
 }
 
 template< typename T >
+const T & turkin::Queue< T >::get() const
+{
+  if (isEmpty())
+  {
+    throw std::runtime_error("queue is empty");
+  }
+  return value_->data;
+}
+
+template< typename T >
 void turkin::Queue< T >::pop()
 {
   if (isEmpty())
   {
     throw std::runtime_error("queue is empty");
   }
-  pattern::OneWayNode< T > * element = value_;
+  OneWayNode< T > * element = value_;
   if (value_ == back_)
   {
     value_ = nullptr;
