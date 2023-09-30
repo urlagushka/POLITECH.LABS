@@ -1,4 +1,4 @@
-# Polytech labs
+# POLYTECH.LABS
 ## Academic subjects <09.03.04 - software engineering>
 ### [Algorithmization and programming](https://github.com/urlagushka/POLITECH.LABS/tree/main/aip#algorithmization-and-programming) (6/6 complete)
 ### [Algorithmization and data structures](https://github.com/urlagushka/POLITECH.LABS/tree/main/aisd#algorithmization-and-data-structures) (6/6 complete)
