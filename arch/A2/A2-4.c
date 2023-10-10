@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <conio.h>
+
+int main()
+{
+  int A[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+  int B[10] = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+  
+  int far * pA = (int *)A;
+  int far * pB = (int *)B;
+
+  asm
+  {
+    cld
+    lds si, pA
+    les di, pB
+    mov cx, 10
+    rep movsw
+  }
+
+  for (int i = 0; i < 10; i++)
+  {
+    printf("\nA[i] = %d, B[i] = %d\n", A[i], B[i]);
+  }
+  getch();
+
+  return 0;
+}
