@@ -1,18 +1,19 @@
 ### Стеки и очереди
 1. Ниже приведены интерфейсы шаблонов классов «Стек» и «Очередь»
 ```cpp
-1 template< typename T >
-2 class Queue {
-3   public:
-4     void push(T rhs);
-5     T drop();
-6     ...
-7 };
-8
-9 template< typename T >
-10 class Stack {
-11   public:
-12     void push(T rhs);
+template< typename T >
+class Queue
+{
+  public:
+    void push(T rhs);
+    T drop();
+    ...
+};
+
+template< typename T >
+class Stack {
+  public:
+12void push(T rhs);
 13     T drop();
 14     ...
 15 };
