@@ -11,7 +11,7 @@
 
 ### Список работ
 0. [Вступительная работа](https://github.com/urlagushka/polytech-labs/tree/main/tp/T0#readme)
-1. [Геометрические фигуры]()
+1. [Геометрические фигуры](https://github.com/urlagushka/polytech-labs/tree/main/tp/T1#readme)
 2. [Алгоритмы I](https://github.com/urlagushka/polytech-labs/tree/main/tp/T2#readme)
 3. [Алгоритмы II](https://github.com/urlagushka/polytech-labs/tree/main/tp/T3#readme)
 4. [РГР](https://github.com/urlagushka/polytech-labs/tree/main/tp/FT#readme)
