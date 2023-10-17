@@ -16,7 +16,7 @@ petrov.ivan, а имя пространства имен — petrov. Это пр
 1. [Стеки и очереди](https://github.com/urlagushka/polytech-labs/tree/main/aisd/S1#readme)
 2. [Списки I](https://github.com/urlagushka/polytech-labs/tree/main/aisd/S2#readme)
 3. Списки II - отсутствует
-4. Бинарные деревья поиска I
-5. Бинарные деревья поиска II
-6. Сортировки
-7. РГР
+4. [Бинарные деревья поиска I](https://github.com/urlagushka/polytech-labs/tree/main/aisd/S4#readme)
+5. [Бинарные деревья поиска II](https://github.com/urlagushka/polytech-labs/tree/main/aisd/S5#readme)
+6. [Сортировки](https://github.com/urlagushka/polytech-labs/tree/main/aisd/S6#readme)
+7. [РГР](https://github.com/urlagushka/polytech-labs/tree/main/aisd/FA#readme)
