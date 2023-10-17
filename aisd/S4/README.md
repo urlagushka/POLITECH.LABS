@@ -4,7 +4,7 @@
 template< typename Key, typename Value, typename Compare >
 class BinarySearchTree
 {
-...
+   ...
 };
 ```
 Интерфейс класса должен быть безопасным. Дерево должно быть сбалансированным
