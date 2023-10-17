@@ -12,10 +12,10 @@ petrov.ivan, а имя пространства имен — petrov. Это пр
 работ.
 
 ### Список работ
-0. [Вступительная работа](https://github.com/urlagushka/polytech-labs/tree/main/aisd/S0)
-1. Стеки и очереди
-2. Списки I
-3. Списки II
+0. [Вступительная работа](https://github.com/urlagushka/polytech-labs/tree/main/aisd/S0#readme)
+1. [Стеки и очереди](https://github.com/urlagushka/polytech-labs/tree/main/aisd/S1#readme)
+2. [Списки I](https://github.com/urlagushka/polytech-labs/tree/main/aisd/S2#readme)
+3. Списки II - отсутствует
 4. Бинарные деревья поиска I
 5. Бинарные деревья поиска II
 6. Сортировки
