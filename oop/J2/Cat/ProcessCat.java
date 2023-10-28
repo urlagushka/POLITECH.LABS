@@ -5,39 +5,39 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 public class ProcessCat {
-    public static void disturbPublic(Cat cat) throws InvocationTargetException, IllegalAccessException {
+    public static void disturbPublic(Cat cat, int amount) throws InvocationTargetException, IllegalAccessException {
         Method[] methods = cat.getClass().getDeclaredMethods();
         for (Method method: methods) {
             if (Modifier.isPublic(method.getModifiers())) {
-                IntCall amount = method.getAnnotation(IntCall.class);
-                for (int i = 0; i < amount.value(); i++) {
-                    method.invoke(cat);
+                IntCall rep = method.getAnnotation(IntCall.class);
+                for (int i = 0; i < rep.value(); i++) {
+                    method.invoke(cat, amount);
                 }
             }
         }
     }
 
-    public static void disturbProtected(Cat cat) throws InvocationTargetException, IllegalAccessException {
+    public static void disturbProtected(Cat cat, int amount) throws InvocationTargetException, IllegalAccessException {
         Method[] methods = cat.getClass().getDeclaredMethods();
         for (Method method: methods) {
             if (Modifier.isProtected(method.getModifiers())) {
-                IntCall amount = method.getAnnotation(IntCall.class);
-                for (int i = 0; i < amount.value(); i++) {
+                IntCall rep = method.getAnnotation(IntCall.class);
+                for (int i = 0; i < rep.value(); i++) {
                     method.setAccessible(true);
-                    method.invoke(cat);
+                    method.invoke(cat, amount);
                 }
             }
         }
     }
 
-    public static void disturbPrivate(Cat cat) throws InvocationTargetException, IllegalAccessException {
+    public static void disturbPrivate(Cat cat, int amount) throws InvocationTargetException, IllegalAccessException {
         Method[] methods = cat.getClass().getDeclaredMethods();
         for (Method method: methods) {
             if (Modifier.isPrivate(method.getModifiers())) {
-                IntCall amount = method.getAnnotation(IntCall.class);
-                for (int i = 0; i < amount.value(); i++) {
+                IntCall rep = method.getAnnotation(IntCall.class);
+                for (int i = 0; i < rep.value(); i++) {
                     method.setAccessible(true);
-                    method.invoke(cat);
+                    method.invoke(cat, amount);
                 }
             }
         }
