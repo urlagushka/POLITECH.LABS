@@ -1,0 +1,6 @@
+cat|кошка
+dog|собака
+laptop|ноутбук
+keyboard|клавиатура
+look|посмотри
+look forward|посмотри прямо
